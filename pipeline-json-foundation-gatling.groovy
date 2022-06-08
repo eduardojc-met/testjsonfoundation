@@ -6,6 +6,7 @@ pipeline {
         //project=credentials('project-name')
         gatlingConf=""
         url_for_gatling=''
+
     }
  
   agent any
@@ -22,7 +23,7 @@ pipeline {
     }
  
 
-    stage('Get & use Configuration') {
+    stage('Foundation Steps') {
       
       steps {
         script{
@@ -59,7 +60,7 @@ pipelineFoundation.start("","","","","","","","")
 
 
 
- stage('Gatling test') {
+ stage('Gatling steps') {
    steps{
      script{
 
@@ -79,7 +80,7 @@ pipelineGatling.start("${url_for_gatling}")
 
  }
 
-   /*
+   
 
      stage('Display Gatling results') {
    steps{
@@ -133,7 +134,7 @@ dir("gatling/"){
    
 
 
- }*/
+ }
  
 
 
