@@ -168,7 +168,7 @@ back_image_push_id = id_arr_back[1].toString().replace("de.icr.io/devops-tools/"
                 	ingress.metadata["name"]= "${appname}"+'-fe'
 
                   url_for_gatling ="https://"+ingress.spec.rules[0]["host"]
-              echo "gatlng:        "+"${url_for_gatling}"
+              
           		bat 'del ingress.yaml > nul'
                 writeYaml file: 'ingress.yaml', data: ingress
          
@@ -211,7 +211,7 @@ frontend_status=""
 backend_status=""
 for(int i = 0; i < 6; i++){
      
- if(!frontend_status.contains("Running") && backend_status.contains("Running")){
+ if(frontend_status.contains("Running") && backend_status.contains("Running")){
     
      break
      
@@ -222,7 +222,7 @@ for(int i = 0; i < 6; i++){
                
      if(i==5){
         
-         error('Los pods no están ejecutandose correctamente, cancelando gatling...')
+         error('Los pods no estan ejecutandose correctamente, cancelando gatling...')
 
      }
      
