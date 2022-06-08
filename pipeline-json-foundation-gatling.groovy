@@ -26,9 +26,9 @@ pipeline {
         script{
 
 
-def json = readJSON file 'configurations.json' 
-echo json.toString()
-
+def json = readJSON file: 'configurations.json' 
+echo json.toString()+"\nf"
+echo json[0].toString()
 /*
 json.each { myData -
  
