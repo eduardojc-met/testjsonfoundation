@@ -322,3 +322,4 @@ dir("gatling/"){
  
 
 }
+return this
