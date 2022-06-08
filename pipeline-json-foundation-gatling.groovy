@@ -80,7 +80,7 @@ pipelineGatling.start("${url_for_gatling}")
 
  }
 
-   
+   //EN esta patde se depliega el pod nginx con los resultados
 
      stage('Display Gatling results') {
    steps{

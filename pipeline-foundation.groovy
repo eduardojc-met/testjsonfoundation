@@ -26,7 +26,7 @@ def start(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_comm
        
       
         script{
-            /*
+            
         def packageJSON = readJSON file: 'package.json'
         def packageJSONVersion = packageJSON.version
         def appname=readMavenPom().getArtifactId()
@@ -36,7 +36,7 @@ def start(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_comm
            bat 'mvn clean package -DskipTests -Pprod,tls '
            timestamp_back = now.format("yyMMdd.hhmmss", TimeZone.getTimeZone("GMT+8"))
            bat 'docker build -t edujc/backjunto:'+readMavenPom().getVersion()+' -f src/main/docker/backend/Dockerfile . && docker tag edujc/backjunto:'+readMavenPom().getVersion()+' de.icr.io/devops-tools/'+"${appname}"+'-bff:'+readMavenPom().getVersion()+"_"+"${timestamp_back}"
-        */
+        
         
         
         
@@ -50,7 +50,7 @@ def start(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_comm
       }
     
  
-  /*  stage ('push images') {
+    stage ('push images') {
         
         script{
              def packageJSON = readJSON file: 'package.json'
@@ -85,11 +85,11 @@ back_image_push_id = id_arr_back[1].toString().replace("de.icr.io/devops-tools/"
         }
         
   
-    } */
+    } 
  
 
 
-  /*  stage('Deploying App to Kubernetes') {
+    stage('Deploying App to Kubernetes') {
       
         script {
 
@@ -199,7 +199,7 @@ back_image_push_id = id_arr_back[1].toString().replace("de.icr.io/devops-tools/"
       
         }
       
-    }*/
+    }
 
 
          stage('Checking pods status') {
@@ -239,85 +239,7 @@ for(int i = 0; i < 6; i++){
 
 
  }
-/*
- stage('Gatling test') {
-   
 
-     script{
-
-
-   def gatling_pipeline = load "pipeline-gatling.groovy"
-           
-bat "IF not exist gatling (mkdir gatling)"
-
-dir("gatling") {
-gatling_pipeline.start("${url_for_gatling}")
-}
-
-
-     }
-   
-
-
- }
-
-   
-
-     stage('Display Gatling results') {
-   
-
-     script{
-
-def folderName=""
-
-dir("gatling/target/gatling"){
-
-folderName= bat(script: "type lastRun.txt", returnStdout: true)
-folderName=folderName.split(" ")[2].replace(" ","").replace("\n","").trim()
-
-}
-
-
-dir("gatling/"){
-def dockerf= readFile "Dockerfile"
-
-dockerf=dockerf.replace("folder","${folderName}")
-
-bat "del Dockerfile"
-writeFile file: 'Dockerfile', text: dockerf
-
-
- bat 'docker build -t gatlingresults-nginx . && docker tag gatlingresults-nginx de.icr.io/devops-tools/gatlingresults-nginx'
-
-
-}
-
-            dir("C:/Program Files/IBM/Cloud/bin"){
-             bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
-           bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
-           bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9mkf09cf7vh8tmu0
- '''}
-dir("gatling/"){
-            bat "docker push de.icr.io/devops-tools/gatlingresults-nginx"
-            bat 'kubectl apply -f deployment.yaml --namespace=develop'
-            bat 'kubectl apply -f service.yaml --namespace=develop'
-            bat 'kubectl apply -f ingress.yaml --namespace=develop'
-
-}  
-                
-      
-
-
-
-
-
-     }
-   
-
-
- }
- 
-  */
  
 
 }
