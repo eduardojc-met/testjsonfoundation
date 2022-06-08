@@ -27,14 +27,20 @@ pipeline {
 
 
 def json = readJSON file: 'configurations.json' 
-echo json.toString()+"\nf"
-echo json[0].toString()
+
+echo json[0].stepsFile.toString()
+
+def foundationConf=json[0].stepsFile.toString()
+def gatlingConf=json[1].stepsFile.toString()
+
+def pipelineFoundation = load foundationConf
+
 /*
 json.each { myData -
  
  def nameActual=myData.projectName.toString()
 
-//se trata de cargar desde aqui el del pipeline y por argumentos se le pasa el nombre del de gatling
+
             
             def archivoconf=myData.stepsFile.toString()
 

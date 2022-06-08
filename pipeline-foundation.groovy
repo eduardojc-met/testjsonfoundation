@@ -1,25 +1,15 @@
 
-pipeline {
- 
-  environment {
-       IBM_ACCESS_KEY_ID     = credentials('ibmuser')
-        IBM_SECRET_ACCESS_KEY = credentials('ibmkey')
-        git_commit=''
-      front_image_push_id=''
-      back_image_push_id=''
-      url_for_gatling=''
-      timestamp_front=''
-      timestamp_back=''
-    }
+def start(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_commit,String front_image_push_id,String back_image_push_id,String url_for_gatling,String timestamp_front, String  timestamp_back){
+
  
  
-  agent any
+
  
-  stages {
+
  
     stage('Checkout Source') {
       
-      steps {
+      
            script{
       def git_command=  git 'https://github.com/eduardojc-met/testgatling.git'
       
@@ -28,15 +18,15 @@ pipeline {
           
       }
     
-      }
+      
     }
  
  
    stage('build image') {
        
-      steps{
+      
         script{
-            
+            /*
         def packageJSON = readJSON file: 'package.json'
         def packageJSONVersion = packageJSON.version
         def appname=readMavenPom().getArtifactId()
@@ -46,16 +36,23 @@ pipeline {
            bat 'mvn clean package -DskipTests -Pprod,tls '
            timestamp_back = now.format("yyMMdd.hhmmss", TimeZone.getTimeZone("GMT+8"))
            bat 'docker build -t edujc/backjunto:'+readMavenPom().getVersion()+' -f src/main/docker/backend/Dockerfile . && docker tag edujc/backjunto:'+readMavenPom().getVersion()+' de.icr.io/devops-tools/'+"${appname}"+'-bff:'+readMavenPom().getVersion()+"_"+"${timestamp_back}"
-        }
+        */
+        
+        
+        
+        
+        
+        echo git_commit
+        echo timestamp_back}
  
-        }
+        
         
      
       }
     
  
-    stage ('push images') {
-        steps{
+  /*  stage ('push images') {
+        
         script{
              def packageJSON = readJSON file: 'package.json'
         def packageJSONVersion = packageJSON.version 
@@ -87,14 +84,14 @@ back_image_push_id = id_arr_back[1].toString().replace("de.icr.io/devops-tools/"
                     
          
         }
-        }
+        
   
-    } 
+    } */
  
 
 
-    stage('Deploying App to Kubernetes') {
-      steps {
+  /*  stage('Deploying App to Kubernetes') {
+      
         script {
 
 	
@@ -202,12 +199,12 @@ back_image_push_id = id_arr_back[1].toString().replace("de.icr.io/devops-tools/"
                 }
       
         }
-      }
-    }
+      
+    }*/
 
 
          stage('Checking pods status') {
-   steps{
+   
 
      script{
        def appname=readMavenPom().getArtifactId()
@@ -239,13 +236,13 @@ for(int i = 0; i < 6; i++){
 
 
      }
-   }
+   
 
 
  }
-
+/*
  stage('Gatling test') {
-   steps{
+   
 
      script{
 
@@ -260,7 +257,7 @@ gatling_pipeline.start("${url_for_gatling}")
 
 
      }
-   }
+   
 
 
  }
@@ -268,7 +265,7 @@ gatling_pipeline.start("${url_for_gatling}")
    
 
      stage('Display Gatling results') {
-   steps{
+   
 
      script{
 
@@ -316,11 +313,12 @@ dir("gatling/"){
 
 
      }
-   }
+   
 
 
  }
  
-  }
+  */
  
+
 }
