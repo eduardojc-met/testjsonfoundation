@@ -18,10 +18,10 @@ def start(String url){
            dir("src/test/java/computerdatabase/"){
 
                   script{
-                 def javaFile = readFile "Java11Simulation.java"
+                 def javaFile = readFile "FoundationSimulation.java"
             javaFile.replaceAll("https*", "${url}"+")")
-                bat "del Java11Simulation.java"
-                 writeFile file: "Java11Simulation.java", text: javaFile
+                bat "del FoundationSimulation.java"
+                 writeFile file: "FoundationSimulation.java", text: javaFile
 
             }
            }
@@ -32,7 +32,7 @@ def start(String url){
 
         stage("Gatling run") {
             script {
-                bat 'mvn gatling:test -Dgatling.simulationClass=io.gatling.demo.Java11Simulation'
+                bat 'mvn gatling:test -Dgatling.simulationClass=io.gatling.demo.FoundationSimulation'
             }
             gatlingArchive()
             
