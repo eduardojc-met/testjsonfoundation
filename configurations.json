@@ -1,0 +1,6 @@
+[
+    {
+        "projectName":"foundation-app",
+        "stepsFile":"pipeline-foundation.groovy"
+    }
+]
