@@ -32,8 +32,9 @@ echo json[0].stepsFile.toString()
 
 def foundationConf=json[0].stepsFile.toString()
 def gatlingConf=json[1].stepsFile.toString()
-echo foundationConf
-def pipelineFoundation = load foundationConf
+
+bat "dir"
+def pipelineFoundation = load "pipelinefoundation.groovy"
 bat 'IF not exist foundation (mkdir foundation)'
 dir("foundation") {
 pipelineFoundation.start("","","","","","","","")

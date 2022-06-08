@@ -1,5 +1,5 @@
 
-def x(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_commit,String front_image_push_id,String back_image_push_id,String url_for_gatling,String timestamp_front, String  timestamp_back){
+def start(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_commit,String front_image_push_id,String back_image_push_id,String url_for_gatling,String timestamp_front, String  timestamp_back){
 
  
  
