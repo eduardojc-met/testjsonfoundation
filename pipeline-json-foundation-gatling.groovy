@@ -34,7 +34,10 @@ def foundationConf=json[0].stepsFile.toString()
 def gatlingConf=json[1].stepsFile.toString()
 
 def pipelineFoundation = load foundationConf
-
+bat 'IF not exist ${"foundation"} (mkdir ${"foundation"})'
+dir(${"foundation"}) {
+pipelineFoundation.start(%IBM_ACCESS_KEY_ID%,%IBM_SECRET_ACCESS_KEY%,"","","","","","")
+}
 /*
 json.each { myData -
  
