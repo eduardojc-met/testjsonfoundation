@@ -42,8 +42,7 @@ def start(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_comm
         
         
         
-        echo git_commit
-        echo timestamp_back}
+        }
  
         
         
@@ -212,7 +211,7 @@ frontend_status=""
 backend_status=""
 for(int i = 0; i < 6; i++){
      
- if(frontend_status.contains("Running") && backend_status.contains("Running")){
+ if(!frontend_status.contains("Running") && backend_status.contains("Running")){
     
      break
      

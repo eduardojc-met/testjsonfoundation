@@ -1,7 +1,7 @@
 [
     {
         "projectName": "foundation-app",
-        "stepsFile": "pipelinefoundation.groovy"
+        "stepsFile": "pipeline-foundation.groovy"
     },
     {
         "projectName": "gatling",
