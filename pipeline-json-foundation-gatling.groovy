@@ -27,7 +27,7 @@ pipeline {
 
 
 def json = readJSON file 'configurations.json' 
-echo json[0].toString()
+echo json.toString()
 
 /*
 json.each { myData -
