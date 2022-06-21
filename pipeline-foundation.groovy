@@ -33,7 +33,7 @@ def start(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_comm
         def now = new Date()
         timestamp_front = now.format("yyMMdd.hhmmss", TimeZone.getTimeZone("GMT+8"))
            bat 'docker build -t edujc/frontnginxjunto:'+"${packageJSONVersion}"+' -f src/main/docker/frontend/Dockerfile . && docker tag edujc/frontnginxjunto:'+"${packageJSONVersion}"+' de.icr.io/devops-tools/'+"${appname}"+'-fe:'+"${packageJSONVersion}"+"_"+"${timestamp_front}"
-           bat 'mvn clean package -DskipTests -Pprod,tls '
+           bat 'mvn clean package -DskipTests -Pdev,tls '
            timestamp_back = now.format("yyMMdd.hhmmss", TimeZone.getTimeZone("GMT+8"))
            bat 'docker build -t edujc/backjunto:'+readMavenPom().getVersion()+' -f src/main/docker/backend/Dockerfile . && docker tag edujc/backjunto:'+readMavenPom().getVersion()+' de.icr.io/devops-tools/'+"${appname}"+'-bff:'+readMavenPom().getVersion()+"_"+"${timestamp_back}"
         
