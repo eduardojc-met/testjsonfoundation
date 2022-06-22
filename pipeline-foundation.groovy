@@ -11,7 +11,7 @@ def start(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY, String git_comm
       
       
            script{
-      def git_command=  git 'https://github.com/eduardojc-met/testgatling.git'
+      def git_command=  git 'https://github.com/eduardojc-met/foundationchanges.git'
       
            git_commit= git_command["GIT_COMMIT"]
            
